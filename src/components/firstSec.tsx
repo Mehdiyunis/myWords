@@ -1,11 +1,15 @@
 'use client'
+import { identifyChangeStatus } from "@/store/reducers/identifyPopUpSlice";
 import Image from "next/image";
-import { useGlobal } from "@/context/Context";
-
+import { useDispatch } from "react-redux";
 
 export default function FirstSec() {
 
-  const { openIdentify, setOpenIdentify } = useGlobal()
+  const dispatch = useDispatch()
+
+  const openIdentifyPopUp = () => {
+    dispatch(identifyChangeStatus())
+  }
 
   return (
     <section className="h-[100vh] bg-[#00073a]">
@@ -13,7 +17,7 @@ export default function FirstSec() {
         <div className="w-1/2">
           <h1 className="text-4xl font-bold mb-9 lg:text-6xl lg:mb-12">Repetition is The Mother of Knowledge.</h1>
           <p className="text-xl text-gray-200 mb-9 lg:text-2xl lg:mb-12">Effortlessly create & study flashcards. Our free, science-backed spaced repetition system helps you learn faster and forget less. Syncs across web, iOS & Android, even offline.</p>
-          <button onClick={() => setOpenIdentify(!openIdentify)} className="block w-full text-center bg-[#73d9ff] p-3 rounded-md">Start Learning</button>
+          <button onClick={openIdentifyPopUp} className="block w-full text-center bg-[#73d9ff] p-3 rounded-md">Start Learning</button>
         </div>
 
         <div className="w-1/3">

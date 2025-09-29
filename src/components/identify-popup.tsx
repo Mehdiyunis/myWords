@@ -1,15 +1,15 @@
 'use client'
+import { identifyChangeStatus } from "@/store/reducers/identifyPopUpSlice";
 import { useState } from "react"
-import { useGlobal } from "@/context/Context";
+import { useDispatch } from "react-redux";
 
 export default function IdentifyPopup() {
     const [changeIdentify, setChangeIdentify] = useState(true);
-    const { openIdentify, setOpenIdentify } = useGlobal()
+    const dispatch = useDispatch()
 
     const closeIdentify = (e: any) => {
         e.stopPropagation()
-        setOpenIdentify(!openIdentify)
-        console.log("Wilma")
+        dispatch(identifyChangeStatus())
     }
 
     return (
@@ -51,7 +51,7 @@ export default function IdentifyPopup() {
 
                     {/* user chooses does he have an account or not */}
                     {!changeIdentify ?
-                        <p className="mb-8 pl-2">I don't have an account. <button onClick={() => setChangeIdentify(!changeIdentify)} className="cursor-pointer text-[var(--logoColor)]">Create</button></p>
+                        <p className="mb-8 pl-2">I do not have an account. <button onClick={() => setChangeIdentify(!changeIdentify)} className="cursor-pointer text-[var(--logoColor)]">Create</button></p>
                         :
                         <p className="mb-8 pl-2">I have an account. <button onClick={() => setChangeIdentify(!changeIdentify)} className="cursor-pointer text-[var(--logoColor)]">Sing in</button></p>}
 

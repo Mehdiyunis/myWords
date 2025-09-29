@@ -3,9 +3,8 @@ import { Work_Sans } from "next/font/google";
 import '../styles/global.css'
 import Header from "@/pages/layouts/header";
 import Footer from "@/pages/layouts/footer";
-import IdentifyPopup from "@/components/identify-popup";
-import { GlobalProvider } from "@/context/Context";
 import Global from "@/components/global";
+import { Providers } from "@/store/providers";
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
@@ -29,14 +28,14 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} antialiased text-white`}
       >
-        <GlobalProvider>
+        <Providers>
           <Header />
           <main>{children}</main>
           <Footer />
 
           {/* global somethings like popup */}
           <Global />
-        </GlobalProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -1,13 +1,16 @@
 'use client'
 
+import { useSelector } from "react-redux";
 import IdentifyPopup from "./identify-popup";
-import { useGlobal } from "@/context/Context";
+import { RootState } from "@/store/store";
 
 export default function Global() {
-    const { openIdentify } = useGlobal()
+
+    const { identifyPopUpStatus } = useSelector((state: RootState) => state.ideSt)
+
     return (
         <>
-            {openIdentify ? <IdentifyPopup /> : ""}
+            {identifyPopUpStatus ? <IdentifyPopup /> : ""}
         </>
     )
 }
